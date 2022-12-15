@@ -66,7 +66,7 @@ public class UserService {
     }
  
     public UserEntity get(Long id) {
-        oAuthService.OnlyAdminsOrOwnUsersData(id);
+       // oAuthService.OnlyAdminsOrOwnUsersData(id);
         try {
             return oUserRepository.findById(id).get();
         } catch (Exception ex) {
@@ -93,7 +93,7 @@ public class UserService {
     */
 
     public Page<UserEntity> getPage(Pageable oPageable, String strFilter, Long id_usertype) {
-        oAuthService.OnlyAdmins();
+        //oAuthService.OnlyAdmins();
         Page<UserEntity> oPage = null;
         if (id_usertype != null) {
             if (strFilter == null || strFilter.isEmpty() || strFilter.trim().isEmpty()) {
@@ -179,7 +179,7 @@ public class UserService {
   
     public UserEntity generate() {
        oAuthService.OnlyAdmins();
-        return generateRandomUser();
+        return oUserRepository.save(generateRandomUser());
     }
 
     public Long generateSome(Integer amount) {
