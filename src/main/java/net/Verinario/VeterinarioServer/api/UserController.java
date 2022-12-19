@@ -51,7 +51,7 @@ public class UserController {
         return new ResponseEntity<Long>(oUserService.create(oNewUserEntity), HttpStatus.OK);
     }
 
-    @PutMapping("/")
+    @PutMapping
     public ResponseEntity<Long> update(@RequestBody UserEntity oUserEntity) {
         return new ResponseEntity<Long>(oUserService.update(oUserEntity), HttpStatus.OK);
     }

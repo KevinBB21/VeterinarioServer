@@ -66,7 +66,7 @@ public class UserService {
     }
  
     public UserEntity get(Long id) {
-       // oAuthService.OnlyAdminsOrOwnUsersData(id);
+       oAuthService.OnlyAdminsOrOwnUsersData(id);
         try {
             return oUserRepository.findById(id).get();
         } catch (Exception ex) {
@@ -75,7 +75,7 @@ public class UserService {
     }
 
     public Long count() {
-        oAuthService.OnlyAdmins();
+     //   oAuthService.OnlyAdmins();
         return oUserRepository.count();
     }
 
@@ -93,7 +93,7 @@ public class UserService {
     */
 
     public Page<UserEntity> getPage(Pageable oPageable, String strFilter, Long id_usertype) {
-        //oAuthService.OnlyAdmins();
+        oAuthService.OnlyAdmins();
         Page<UserEntity> oPage = null;
         if (id_usertype != null) {
             if (strFilter == null || strFilter.isEmpty() || strFilter.trim().isEmpty()) {
@@ -114,8 +114,8 @@ public class UserService {
     }
     
     public Long create(UserEntity oNewUserEntity) {
-        oAuthService.OnlyAdmins();
-       // validate(oNewUserEntity);
+       oAuthService.OnlyAdmins();
+      // validate(oNewUserEntity);
         oNewUserEntity.setId(0L);
         oNewUserEntity.setPassword(VETERINARIO_DEFAULT_PASSWORD);
          //oNewUserEntity.setToken(RandomHelper.getToken(100));
@@ -125,7 +125,7 @@ public class UserService {
     @Transactional //pte
     public Long update(UserEntity oUserEntity) {
         validate(oUserEntity.getId());
-        //oAuthService.OnlyAdminsOrOwnUsersData(oUserEntity.getId());
+        oAuthService.OnlyAdminsOrOwnUsersData(oUserEntity.getId());
         validate(oUserEntity);
         oUsertypeService.validate(oUserEntity.getUsertype().getId());
         if (oAuthService.isAdmin()) {
@@ -164,7 +164,7 @@ public class UserService {
     }
 
     public Long delete(Long id) {
-       oAuthService.OnlyAdmins();
+    //   oAuthService.OnlyAdmins();
         if (oUserRepository.existsById(id)) {
             oUserRepository.deleteById(id);
             if (oUserRepository.existsById(id)) {
@@ -178,12 +178,12 @@ public class UserService {
     }
   
     public UserEntity generate() {
-       oAuthService.OnlyAdmins();
+   //    oAuthService.OnlyAdmins();
         return oUserRepository.save(generateRandomUser());
     }
 
     public Long generateSome(Integer amount) {
-        oAuthService.OnlyAdmins();
+    //    oAuthService.OnlyAdmins();
         List<UserEntity> userList = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
             UserEntity oUserEntity = generateRandomUser();

@@ -121,6 +121,7 @@ public class AuthService {
 
     public void OnlyAdmins() {
         UserEntity oUserSessionEntity = (UserEntity) oHttpSession.getAttribute("user");
+        System.out.println(oHttpSession.getAttribute("user"));
         if (oUserSessionEntity == null) {
             throw new UnauthorizedException("this request is only allowed to admin role");
         } else {
