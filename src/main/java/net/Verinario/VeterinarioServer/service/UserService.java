@@ -75,7 +75,7 @@ public class UserService {
     }
 
     public Long count() {
-     //   oAuthService.OnlyAdmins();
+        oAuthService.OnlyAdmins();
         return oUserRepository.count();
     }
 
@@ -178,12 +178,12 @@ public class UserService {
     }
   
     public UserEntity generate() {
-   //    oAuthService.OnlyAdmins();
+      oAuthService.OnlyAdmins();
         return oUserRepository.save(generateRandomUser());
     }
 
     public Long generateSome(Integer amount) {
-    //    oAuthService.OnlyAdmins();
+      oAuthService.OnlyAdmins();
         List<UserEntity> userList = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
             UserEntity oUserEntity = generateRandomUser();
