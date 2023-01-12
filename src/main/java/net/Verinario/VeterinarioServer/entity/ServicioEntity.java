@@ -120,8 +120,8 @@ public class ServicioEntity implements Serializable {
 
 
 
-    public List<CitaEntity> getCitas() {
-        return citas;
+    public int getCitas() {
+        return citas.size();
     }
 
 

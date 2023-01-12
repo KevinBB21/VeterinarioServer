@@ -43,14 +43,14 @@ public class UsertypeController {
     public ResponseEntity<Long> count() {
         return new ResponseEntity<Long>(oUsertypeService.count(), HttpStatus.OK);
     }
-   /* 
+    
     @GetMapping("")
     public ResponseEntity<Page<UsertypeEntity>> getPage(
             @ParameterObject @PageableDefault(page = 0, size = 10, direction = Sort.Direction.DESC) Pageable oPageable,
             @RequestParam(name = "filter", required = false) String strFilter) {
         return new ResponseEntity<Page<UsertypeEntity>>(oUsertypeService.getPage(oPageable, strFilter), HttpStatus.OK);
     }
-    */
+    
 
     @PutMapping("")
     public ResponseEntity<Long> update(@RequestBody UsertypeEntity oUsertypeEntity) {

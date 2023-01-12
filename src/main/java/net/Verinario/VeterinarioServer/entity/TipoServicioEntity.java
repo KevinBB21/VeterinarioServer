@@ -59,8 +59,8 @@ public class TipoServicioEntity {
     }
 
 
-    public List<ServicioEntity> getServicios() {
-        return servicios;
+    public int getServicios() {
+        return servicios.size();
     }
 
 

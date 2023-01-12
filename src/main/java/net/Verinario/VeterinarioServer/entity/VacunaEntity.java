@@ -40,12 +40,16 @@ public class VacunaEntity implements Serializable {
 
     
 
-    public VacunaEntity(Long id, String nombre, List<FechaVacEntity> fechasvac, TipoAnimalEntity tipoanimal) {
-        this.id = id;
-        this.nombre = nombre;
-        this.fechasvac = fechasvac;
-        this.tipoanimal = tipoanimal;
+  
+    public VacunaEntity() {
+        this.fechasvac = new ArrayList<>();
     }
+
+    public VacunaEntity(Long id, String name) {
+        this.id = id;
+        this.fechasvac = new ArrayList<>();
+    }
+
 
     public Long getId() {
         return id;
@@ -63,8 +67,8 @@ public class VacunaEntity implements Serializable {
         this.nombre = nombre;
     }
 
-    public List<FechaVacEntity> getFechasvac() {
-        return fechasvac;
+    public int getFechasvac() {
+        return fechasvac.size();
     }
 
     public TipoAnimalEntity getTipoanimal() {

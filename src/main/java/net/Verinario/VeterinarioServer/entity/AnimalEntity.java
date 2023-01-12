@@ -131,12 +131,12 @@ public class AnimalEntity implements Serializable {
         this.tipoanimal = tipoanimal;
     }
 
-    public List<FechaVacEntity> getFechasvac() {
-        return fechasvac;
+    public int getFechasvac() {
+        return fechasvac.size();
     }
 
-    public List<CitaEntity> getCitas() {
-        return citas;
+    public int getCitas() {
+        return citas.size();
     }
 
 

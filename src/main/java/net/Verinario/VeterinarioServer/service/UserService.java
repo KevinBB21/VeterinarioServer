@@ -53,15 +53,11 @@ public class UserService {
     }
 
     public void validate(UserEntity oUserEntity) {
-        ValidationHelper.validateDNI(oUserEntity.getDni(), "campo DNI de User");
         ValidationHelper.validateStringLength(oUserEntity.getName(), 2, 50, "campo Name de User (el campo debe tener longitud de 2 a 50 caracteres)");
         ValidationHelper.validateStringLength(oUserEntity.getSurname1(), 2, 50, "campo primer Surname de User (el campo debe tener longitud de 2 a 50 caracteres)");
         ValidationHelper.validateStringLength(oUserEntity.getSurname2(), 2, 50, "campo segundo Surname de User (el campo debe tener longitud de 2 a 50 caracteres)");
         ValidationHelper.validateEmail(oUserEntity.getEmail(), " campo email de User");
         ValidationHelper.validateLogin(oUserEntity.getUsername(), " campo login de User");
-        if (oUserRepository.existsByUsername(oUserEntity.getUsername())) {
-            throw new ValidationException("el campo Login está repetido");
-        }
         oUsertypeService.validate(oUserEntity.getUsertype().getId());
     }
  
@@ -115,7 +111,7 @@ public class UserService {
     
     public Long create(UserEntity oNewUserEntity) {
        oAuthService.OnlyAdmins();
-      // validate(oNewUserEntity);
+       validate(oNewUserEntity);
         oNewUserEntity.setId(0L);
         oNewUserEntity.setPassword(VETERINARIO_DEFAULT_PASSWORD);
          //oNewUserEntity.setToken(RandomHelper.getToken(100));
@@ -164,7 +160,7 @@ public class UserService {
     }
 
     public Long delete(Long id) {
-    //   oAuthService.OnlyAdmins();
+      oAuthService.OnlyAdmins();
         if (oUserRepository.existsById(id)) {
             oUserRepository.deleteById(id);
             if (oUserRepository.existsById(id)) {
