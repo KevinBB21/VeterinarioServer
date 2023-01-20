@@ -27,7 +27,7 @@ public class AnimalEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nombre_animal;
+    private String nombre;
     private String color;
     private String raza;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
@@ -53,10 +53,10 @@ public class AnimalEntity implements Serializable {
     
     
     
-    public AnimalEntity(Long id, String nombre_animal, String color, String raza, LocalDateTime fecha_nac, int vacunado,
+    public AnimalEntity(Long id, String nombre, String color, String raza, LocalDateTime fecha_nac, int vacunado,
             double peso, TipoAnimalEntity tipoanimal, List<FechaVacEntity> fechasvac, List<CitaEntity> citas) {
         this.id = id;
-        this.nombre_animal = nombre_animal;
+        this.nombre = nombre;
         this.color = color;
         this.raza = raza;
         this.fecha_nac = fecha_nac;
@@ -75,12 +75,12 @@ public class AnimalEntity implements Serializable {
         this.id = id;
     }
 
-    public String getNombre_animal() {
-        return nombre_animal;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombre_animal(String nombre_animal) {
-        this.nombre_animal = nombre_animal;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getColor() {

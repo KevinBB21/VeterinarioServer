@@ -81,6 +81,10 @@ public class FechaVacEntity implements Serializable {
         this.animal = animal;
     }
 
+    public FechaVacEntity() {
+    }
+
+    
 
   /* 
     @PreRemove

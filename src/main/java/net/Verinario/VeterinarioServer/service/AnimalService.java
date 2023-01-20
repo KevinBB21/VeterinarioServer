@@ -19,7 +19,6 @@ import net.Verinario.VeterinarioServer.repository.AnimalRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import net.Verinario.VeterinarioServer.repository.TipoAnimalRepository;
 
 @Service
 public class AnimalService {
@@ -54,7 +53,7 @@ public class AnimalService {
     }
 
     public void validate(AnimalEntity oAnimalEntity) {
-        ValidationHelper.validateStringLength(oAnimalEntity.getNombre_animal(), 2, 50, "campo Name de Animal (el campo debe tener longitud de 2 a 50 caracteres)");
+        ValidationHelper.validateStringLength(oAnimalEntity.getNombre(), 2, 50, "campo Name de Animal (el campo debe tener longitud de 2 a 50 caracteres)");
         ValidationHelper.validateStringLength(oAnimalEntity.getColor(), 2, 50, "campo primer Surname de Animal (el campo debe tener longitud de 2 a 50 caracteres)");
         ValidationHelper.validateStringLength(oAnimalEntity.getRaza(), 2, 50, "campo segundo Surname de Animal (el campo debe tener longitud de 2 a 50 caracteres)");
         ValidationHelper.validateDate(oAnimalEntity.getFecha_nac(), null, null, " campo fecha de animal");
@@ -93,17 +92,17 @@ public class AnimalService {
         Page<AnimalEntity> oPage = null;
         if (id_TipoAnimal != null) {
             if (strFilter == null || strFilter.isEmpty() || strFilter.trim().isEmpty()) {
-                oPage = oAnimalRepository.findByTipoAnimalId(id_TipoAnimal, oPageable);
+                oPage = oAnimalRepository.findByTipoanimalId(id_TipoAnimal, oPageable);
             } else {
                 oPage = oAnimalRepository
-                        .findByTipoAnimalIdAndNombre_animalIgnoreCaseContainingOrColorIgnoreCaseContainingOrRazaIgnoreCaseContaining( id_TipoAnimal, strFilter, strFilter, strFilter, oPageable);
+                        .findByTipoanimalIdAndNombreIgnoreCaseContainingOrColorIgnoreCaseContainingOrRazaIgnoreCaseContaining( id_TipoAnimal, strFilter, strFilter, strFilter, oPageable);
             }
         } else {
             if (strFilter == null || strFilter.isEmpty() || strFilter.trim().isEmpty()) {
                 oPage = oAnimalRepository.findAll(oPageable);
             } else {
                 oPage = oAnimalRepository
-                        .findByNombre_animalIgnoreCaseContainingOrColorIgnoreCaseContainingOrRazaIgnoreCaseContaining(strFilter, strFilter, strFilter, oPageable);
+                        .findByNombreIgnoreCaseContainingOrColorIgnoreCaseContainingOrRazaIgnoreCaseContaining(strFilter, strFilter, strFilter, oPageable);
             }
         }
         return oPage;
@@ -174,7 +173,7 @@ public class AnimalService {
     
     private AnimalEntity generateRandomAnimal() {
         AnimalEntity oAnimalEntity = new AnimalEntity();
-        oAnimalEntity.setNombre_animal(generateNombre_animal());
+        oAnimalEntity.setNombre(generateNombre());
         oAnimalEntity.setColor(generateColor());
         oAnimalEntity.setRaza(generateRaza());
         oAnimalEntity.setFecha_nac(RandomHelper.getRadomDateTime());
@@ -183,14 +182,14 @@ public class AnimalService {
         int totalTipoAnimals = (int) oTipoAnimalRepository.count();
         int randomTipoAnimalId = RandomHelper.getRandomInt(1, totalTipoAnimals);
         oTipoAnimalRepository.findById((long) randomTipoAnimalId)
-                .ifPresent(oAnimalEntity.setTipoanimal(randomTipoAnimalId););
+        .ifPresent(oAnimalEntity::setTipoanimal);
 
 
         return oAnimalEntity;
     }
     
 
-    private String generateNombre_animal() {
+    private String generateNombre() {
         return NAMES[RandomHelper.getRandomInt(0, NAMES.length - 1)].toLowerCase();
     }
 
