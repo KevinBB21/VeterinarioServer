@@ -52,13 +52,7 @@ public class AnimalService {
         }
     }
 
-    public void validate(AnimalEntity oAnimalEntity) {
-        ValidationHelper.validateStringLength(oAnimalEntity.getNombre(), 2, 50, "campo Name de Animal (el campo debe tener longitud de 2 a 50 caracteres)");
-        ValidationHelper.validateStringLength(oAnimalEntity.getColor(), 2, 50, "campo primer Surname de Animal (el campo debe tener longitud de 2 a 50 caracteres)");
-        ValidationHelper.validateStringLength(oAnimalEntity.getRaza(), 2, 50, "campo segundo Surname de Animal (el campo debe tener longitud de 2 a 50 caracteres)");
-        ValidationHelper.validateDate(oAnimalEntity.getFecha_nac(), null, null, " campo fecha de animal");
-        ValidationHelper.validateRPP(oAnimalEntity.getVacunado());
-    }
+  
  
     public AnimalEntity get(Long id) {
        oAuthService.OnlyAdminsOrOwnUsersData(id);
@@ -110,7 +104,7 @@ public class AnimalService {
     
     public Long create(AnimalEntity oNewAnimalEntity) {
        oAuthService.OnlyAdmins();
-       validate(oNewAnimalEntity);
+       
         oNewAnimalEntity.setId(0L);
          //oNewAnimalEntity.setToken(RandomHelper.getToken(100));
         return oAnimalRepository.save(oNewAnimalEntity).getId();
@@ -176,7 +170,7 @@ public class AnimalService {
         oAnimalEntity.setNombre(generateNombre());
         oAnimalEntity.setColor(generateColor());
         oAnimalEntity.setRaza(generateRaza());
-        oAnimalEntity.setFecha_nac(RandomHelper.getRadomDateTime());
+        
         oAnimalEntity.setVacunado(RandomHelper.getRandomInt2(0, 1));
         oAnimalEntity.setPeso(RandomHelper.getRadomDouble(5, 25));
         int totalTipoAnimals = (int) oTipoAnimalRepository.count();

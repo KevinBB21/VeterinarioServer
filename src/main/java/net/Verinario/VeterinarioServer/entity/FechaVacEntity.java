@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
@@ -30,8 +30,8 @@ public class FechaVacEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-    private LocalDateTime fecha_inic;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate fecha_inic;
     
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -50,11 +50,11 @@ public class FechaVacEntity implements Serializable {
         this.id = id;
     }
 
-    public LocalDateTime getFecha_inic() {
+    public LocalDate getFecha_inic() {
         return fecha_inic;
     }
 
-    public void setFecha_inic(LocalDateTime fecha_inic) {
+    public void setFecha_inic(LocalDate fecha_inic) {
         this.fecha_inic = fecha_inic;
     }
 
@@ -74,7 +74,7 @@ public class FechaVacEntity implements Serializable {
         this.animal = animal;
     }
 
-    public FechaVacEntity(Long id, LocalDateTime fecha_inic, VacunaEntity vacuna, AnimalEntity animal) {
+    public FechaVacEntity(Long id, LocalDate fecha_inic, VacunaEntity vacuna, AnimalEntity animal) {
         this.id = id;
         this.fecha_inic = fecha_inic;
         this.vacuna = vacuna;

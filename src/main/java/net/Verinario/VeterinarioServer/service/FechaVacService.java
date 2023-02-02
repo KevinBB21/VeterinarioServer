@@ -80,16 +80,12 @@ public class FechaVacService {
         return id;
     }
 
-    public void validate(FechaVacEntity oFechaVacEntity){
-        ValidationHelper.validateDate(oFechaVacEntity.getFecha_inic(), LocalDateTime.of(1950, 01, 01, 00, 00, 00), LocalDateTime.of(2025, 01, 01, 00, 00, 00), "campo fecha de FechaVac");
-        oAnimalService.validate(oFechaVacEntity.getAnimal().getId());
-        oVacunaService.validate(oFechaVacEntity.getVacuna().getId());
-    }
+   
 
 
     public Long create(FechaVacEntity oNewFechaVacEntity) {
         //oAuthService.OnlyAdmins();
-        validate(oNewFechaVacEntity);
+     
         oNewFechaVacEntity.setId(0L);
         return oFechaVacRepository.save(oNewFechaVacEntity).getId();
     }
@@ -128,7 +124,6 @@ public class FechaVacService {
     private FechaVacEntity generateRandomFechaVac() {
         FechaVacEntity oFechaVacEntity = new FechaVacEntity();
         oFechaVacEntity.setAnimal(oAnimalService.getOneRandom()); 
-        oFechaVacEntity.setFecha_inic(generateDates());
         oFechaVacEntity.setVacuna(oVacunaService.getOneRandom());
         return oFechaVacEntity;
     }

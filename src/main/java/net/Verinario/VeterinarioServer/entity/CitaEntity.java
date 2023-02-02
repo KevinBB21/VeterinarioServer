@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
@@ -30,8 +30,8 @@ public class CitaEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-    private LocalDateTime fecha;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate fecha;
     private int pagado;
 
 
@@ -55,11 +55,11 @@ public class CitaEntity implements Serializable {
         this.id = id;
     }
 
-    public LocalDateTime getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDateTime fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
@@ -85,7 +85,7 @@ public class CitaEntity implements Serializable {
         
     }
 
-    public CitaEntity(Long id, LocalDateTime fecha, int pagado, UserEntity user, ServicioEntity servicio,
+    public CitaEntity(Long id, LocalDate fecha, int pagado, UserEntity user, ServicioEntity servicio,
             AnimalEntity animal) {
         this.id = id;
         this.fecha = fecha;

@@ -3,7 +3,7 @@ package net.Verinario.VeterinarioServer.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +30,8 @@ public class AnimalEntity implements Serializable {
     private String nombre;
     private String color;
     private String raza;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-    private LocalDateTime fecha_nac;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate fecha_nac;
     private int vacunado;
     private double peso;
 
@@ -53,7 +53,7 @@ public class AnimalEntity implements Serializable {
     
     
     
-    public AnimalEntity(Long id, String nombre, String color, String raza, LocalDateTime fecha_nac, int vacunado,
+    public AnimalEntity(Long id, String nombre, String color, String raza, LocalDate fecha_nac, int vacunado,
             double peso, TipoAnimalEntity tipoanimal, List<FechaVacEntity> fechasvac, List<CitaEntity> citas) {
         this.id = id;
         this.nombre = nombre;
@@ -99,11 +99,11 @@ public class AnimalEntity implements Serializable {
         this.raza = raza;
     }
 
-    public LocalDateTime getFecha_nac() {
+    public LocalDate getFecha_nac() {
         return fecha_nac;
     }
 
-    public void setFecha_nac(LocalDateTime fecha_nac) {
+    public void setFecha_nac(LocalDate fecha_nac) {
         this.fecha_nac = fecha_nac;
     }
 
