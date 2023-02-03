@@ -58,7 +58,7 @@ public class FechaVacService {
         return oFechaVacRepository.save(oFechaVacEntity).getId();
     }
 
-    public Page<FechaVacEntity> getPage(Long id_Animal, Long id_Vacuna, int page, int size) {
+    public Page<FechaVacEntity> getPage(Long id_Vacuna, Long id_Animal, int page, int size) {
         //oAuthService.OnlyAdmins();
         Pageable oPageable = PageRequest.of(page, size);
         if (id_Animal == null && id_Vacuna == null) {

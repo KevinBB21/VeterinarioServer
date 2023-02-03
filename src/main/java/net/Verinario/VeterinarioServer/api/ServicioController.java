@@ -42,8 +42,8 @@ public class ServicioController {
     public ResponseEntity<Page<ServicioEntity>> getPage(
             @ParameterObject @PageableDefault(page = 0, size = 10, direction = Sort.Direction.DESC) Pageable oPageable,
             @RequestParam(name = "filter", required = false) String strFilter,
-            @RequestParam(name = "Tiposervicio", required = false) Long Tiposervicio) {
-        return new ResponseEntity<Page<ServicioEntity>>(oServicioService.getPage(oPageable, strFilter, Tiposervicio), HttpStatus.OK);
+            @RequestParam(name = "tiposervicio", required = false) Long tiposervicio) {
+        return new ResponseEntity<Page<ServicioEntity>>(oServicioService.getPage(oPageable, strFilter, tiposervicio), HttpStatus.OK);
     }
 
     @PostMapping("/")

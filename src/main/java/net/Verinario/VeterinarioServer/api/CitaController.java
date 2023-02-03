@@ -42,8 +42,8 @@ public class CitaController {
     public ResponseEntity<Page<CitaEntity>> getPage(
             @ParameterObject @PageableDefault(page = 0, size = 10, direction = Sort.Direction.DESC) Pageable oPageable,
             @RequestParam(name = "filter", required = false) String strFilter,
-            @RequestParam(name = "filter", required = false) Long Servicio,
-            @RequestParam(name = "filter", required = false) Long User,
+            @RequestParam(name = "servicio", required = false) Long Servicio,
+            @RequestParam(name = "user", required = false) Long User,
             @RequestParam(name = "animal", required = false) Long Animal)
              {
         return new ResponseEntity<Page<CitaEntity>>(oCitaService.getPage(oPageable, strFilter, Animal ,Servicio ,User), HttpStatus.OK);

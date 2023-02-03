@@ -40,7 +40,7 @@ public class FechaVacController {
     
     @GetMapping("")
 	public ResponseEntity<Page<FechaVacEntity>> getPage(
-        	@RequestParam(value = "vacuna", required = false) Long id_vacuna,
+        	@RequestParam(value = "tipovacuna", required = false) Long id_vacuna,
             @RequestParam(value = "animal", required = false) Long id_animal,
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "10") int size

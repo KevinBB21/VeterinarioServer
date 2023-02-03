@@ -42,7 +42,7 @@ public class AnimalController {
     public ResponseEntity<Page<AnimalEntity>> getPage(
             @ParameterObject @PageableDefault(page = 0, size = 10, direction = Sort.Direction.DESC) Pageable oPageable,
             @RequestParam(name = "filter", required = false) String strFilter,
-            @RequestParam(name = "Tipoanimal", required = false) Long Tipoanimal) {
+            @RequestParam(name = "tipoanimal", required = false) Long Tipoanimal) {
         return new ResponseEntity<Page<AnimalEntity>>(oAnimalService.getPage(oPageable, strFilter, Tipoanimal), HttpStatus.OK);
     }
 

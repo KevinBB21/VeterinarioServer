@@ -37,7 +37,7 @@ public class CitaService {
     }
 
     //Mirar con karim , que no esta muy hayá
-    public Page<CitaEntity> getPage(Pageable oPageable, String strFilter, Long id_usuario ,Long id_animal ,Long id_servicio) {
+    public Page<CitaEntity> getPage(Pageable oPageable, String strFilter, Long id_animal ,Long id_servicio ,Long id_usuario) {
         oAuthService.OnlyAdmins();
         Page<CitaEntity> oPage = null;
         if (id_usuario != null) {
