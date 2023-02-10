@@ -47,19 +47,19 @@ public class FechaVacService {
     }
 
     public FechaVacEntity get(Long id) {
-        //oAuthService.OnlyAdmins();
+        oAuthService.OnlyAdmins();
         return oFechaVacRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("FechaVac with id: " + id + " not found"));
     }
 
     public Long update(FechaVacEntity oFechaVacEntity) {
         validate(oFechaVacEntity.getId());
-        //oAuthService.OnlyAdmins();
+        oAuthService.OnlyAdmins();
         return oFechaVacRepository.save(oFechaVacEntity).getId();
     }
 
     public Page<FechaVacEntity> getPage(Long id_Vacuna, Long id_Animal, int page, int size) {
-        //oAuthService.OnlyAdmins();
+        oAuthService.OnlyAdmins();
         Pageable oPageable = PageRequest.of(page, size);
         if (id_Animal == null && id_Vacuna == null) {
             return oFechaVacRepository.findAll(oPageable);
