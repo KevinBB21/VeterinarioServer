@@ -53,7 +53,7 @@ public class VacunaService {
     }
 
     public VacunaEntity get(Long id) {
-       oAuthService.OnlyAdminsOrOwnUsersData(id);
+       //oAuthService.OnlyAdminsOrOwnUsersData(id);
         try {
             return oVacunaRepository.findById(id).get();
         } catch (Exception ex) {
